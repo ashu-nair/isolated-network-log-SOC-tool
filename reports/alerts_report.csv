@@ -1,0 +1,4 @@
+ID,Attack Type,Source IP,Event Count,Time Window,Severity,MITRE ID,Detected At
+6,Brute Force Attack,127.0.0.1,14,2 minutes,High,T1110,2026-02-03 16:56:15
+7,Privileged Account Access Attempt,127.0.0.1,5,N/A,Medium,T1078,2026-02-03 16:56:16
+8,Privileged Account Access Attempt,127.0.0.1,43,N/A,Medium,T1078,2026-02-03 16:56:16
