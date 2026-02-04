@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime, timedelta
+from config.settings import DB_PATH
 
-DB_PATH = "storage/portsoc.db"
 
 THRESHOLD = 20
 WINDOW_MINUTES = 1

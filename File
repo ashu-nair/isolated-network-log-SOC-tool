@@ -1,0 +1,4 @@
+python -c "import sqlite3; c=sqlite3.connect('storage/portsoc.db'); c.execute('DELETE FROM alerts'); c.commit(); c.close()"
+this above code is to clear earlier detection
+python -c "import sqlite3; c=sqlite3.connect('storage/portsoc.db'); c.execute('DELETE FROM alerts'); c.execute('DELETE FROM logs'); c.commit(); c.close()"
+this above one is to clear alerts and logs both

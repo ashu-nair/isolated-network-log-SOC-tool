@@ -1,49 +1,47 @@
-2026-02-01 18:41:54 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-01 18:41:59 | 127.0.0.1 | AUTH_SUCCESS | Accepted password for user admin
-2026-02-02 19:28:29 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:25 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:26 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:27 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:29 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:29 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:30 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:30 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:31 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:31 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 19:48:32 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:18 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:18 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:19 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:19 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:20 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:20 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:20 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:20 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:21 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 20:00:21 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:44 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:51 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:52 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:52 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:52 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:53 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:53 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:53 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:54 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:55 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:55 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-02 23:06:56 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:32 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:32 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:32 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:32 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:33 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:33 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:34 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:34 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:34 | 127.0.0.1 | AUTH_FAIL | Failed password for root from 10.0.0.5
-2026-02-03 16:55:46 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.9
-2026-02-03 16:55:46 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.9
-2026-02-03 16:55:47 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.9
-2026-02-03 16:55:47 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.9
-2026-02-03 16:55:51 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.9
+2026-02-04 19:09:05 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:05 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:06 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:06 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:07 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:07 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:08 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:08 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:09 | 127.0.0.1 | AUTH_FAIL | Failed password for admin from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user1 from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user2 from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user3 from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user4 from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user5 from 10.0.0.5
+2026-02-04 19:09:35 | 127.0.0.1 | AUTH_FAIL | Failed password for user6 from 10.0.0.5
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:44 | 127.0.0.1 | GENERAL | Connection attempt from 192.168.1.50
+2026-02-04 19:09:53 | 127.0.0.1 | FIREWALL | Firewall disabled by administrator
+2026-02-04 19:10:00 | 127.0.0.1 | AUTH_SUCCESS | Accepted password for root from 10.0.0.5

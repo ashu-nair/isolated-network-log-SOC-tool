@@ -4,15 +4,15 @@ import time
 print("\n[+] PORT-SOC Analysis Pipeline Started\n")
 
 steps = [
-    ("Parsing logs", "python collector/parse_and_store.py"),
-    ("Brute force detection", "python detection/bruteforce_detector.py"),
-    ("Privileged access detection", "python detection/privileged_access_detector.py"),
-    ("Anomaly detection", "python detection/anomaly_detector.py"),
+    ("Parsing logs", "python -m collector.parse_and_store"),
+    ("Brute force detection", "python -m detection.bruteforce_detector"),
+    ("Privileged access detection", "python -m detection.privileged_access_detector"),
+    ("Anomaly detection", "python -m detection.anomaly_detector"),
+    ("Identity abuse detection", "python -m detection.identity_abuse_detector"),
+    ("Security tampering detection", "python -m detection.security_tampering_detector"),
+    ("Policy violation detection", "python -m detection.policy_violation_detector"),
+    ("Incident correlation", "python -m correlation.incident_correlator"),
 ]
-
-# Optional: threat intel
-if os.path.exists("detection/threat_intel_detector.py"):
-    steps.append(("Threat intelligence detection", "python detection/threat_intel_detector.py"))
 
 for name, cmd in steps:
     print(f"[+] {name}...")

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PORT-SOC Alerts Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>PORT-SOC Alerts Dashboard</h2>
+
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Attack</th>
+        <th>Source IP</th>
+        <th>Severity</th>
+        <th>MITRE</th>
+        <th>Count</th>
+        <th>Window</th>
+    </tr>
+    {% for a in alerts %}
+    <tr>
+        <td>{{ a[0] }}</td>
+        <td>{{ a[1] }}</td>
+        <td>{{ a[2] }}</td>
+        <td class="{{ a[3]|lower }}">{{ a[3] }}</td>
+        <td>{{ a[4] }}</td>
+        <td>{{ a[5] }}</td>
+        <td>{{ a[6] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

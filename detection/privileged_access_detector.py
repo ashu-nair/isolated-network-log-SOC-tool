@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime
+from config.settings import DB_PATH
 
-DB_PATH = "storage/portsoc.db"
 PRIV_USERS = ("root", "admin")
 
 conn = sqlite3.connect(DB_PATH)
