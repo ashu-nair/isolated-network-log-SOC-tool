@@ -1,0 +1,31 @@
+    "Failed password for invalid user admin from 192.168.1.105 port 111 ssh2",
+    "Failed password for invalid user support from 192.168.1.105 port 111 ssh2",
+    "Failed password for invalid user guest from 192.168.1.105 port 111 ssh2",
+    "Failed password for root from 192.168.1.105 port 111 ssh2",
+    "Failed password for root from 192.168.1.105 port 111 ssh2",
+    "Failed password for root from 192.168.1.105 port 111 ssh2",
+    "Failed password for root from 192.168.1.105 port 111 ssh2",
+
+
+    "sudo: jdoe : TTY=pts/0 ; PWD=/home/jdoe ; USER=root ; COMMAND=/usr/bin/apt-get update",
+
+
+    "sudo: jdoe : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c import os; os.setuid(0); os.system('/bin/bash')",
+
+
+    "Firewall disabled by administrator from 192.168.1.200",
+
+    "Policy violation: root accessed restricted file /etc/shadow from 192.168.1.105",
+
+
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",
+    "Random activity from 192.168.1.77",

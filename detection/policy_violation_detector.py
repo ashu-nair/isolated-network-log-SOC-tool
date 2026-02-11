@@ -1,6 +1,8 @@
 import sqlite3
 from datetime import datetime, timedelta
 from config.settings import DB_PATH
+from feeds.reputation_loader import get_ip_reputation
+
 
 
 OFF_HOURS_START = 22
@@ -10,8 +12,17 @@ WINDOW_MINUTES = 60  # one alert per hour per user/IP
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
-now = datetime.now()
-window_start = now - timedelta(minutes=WINDOW_MINUTES)
+# Use latest log timestamp instead of system time
+cursor.execute("SELECT MAX(timestamp) FROM logs")
+latest_ts = cursor.fetchone()[0]
+
+if not latest_ts:
+    print("[INFO] No logs found for brute force detection.")
+    conn.close()
+    exit()
+
+latest_dt = datetime.strptime(latest_ts, "%Y-%m-%d %H:%M:%S")
+window_start = latest_dt - timedelta(minutes=WINDOW_MINUTES)
 
 cursor.execute("""
 SELECT DISTINCT source_ip, username
@@ -21,6 +32,9 @@ AND timestamp >= ?
 """, (window_start.strftime("%Y-%m-%d %H:%M:%S"),))
 
 for ip, user in cursor.fetchall():
+    rep = get_ip_reputation(ip)
+    ip_tag = rep["tag"] if rep else "unknown"
+    ip_risk = rep["risk"] if rep else "unknown"
     # Check time condition separately
     cursor.execute("""
     SELECT timestamp FROM logs
@@ -54,9 +68,9 @@ for ip, user in cursor.fetchall():
         cursor.execute("""
         INSERT INTO alerts (
             alert_type, source_ip, event_count,
-            time_window, severity, mitre_id, detected_at
+            time_window, severity, mitre_id, detected_at, ip_tag, ip_risk
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             "Policy Violation: Off-Hours Privileged Access",
             ip,
@@ -64,7 +78,9 @@ for ip, user in cursor.fetchall():
             "Off-hours",
             "Medium",
             "T1078",
-            now.strftime("%Y-%m-%d %H:%M:%S")
+            latest_dt.strftime("%Y-%m-%d %H:%M:%S"),
+            ip_tag,
+            ip_risk
         ))
 
         print(f"[ALERT] Policy violation by {user} from {ip}")

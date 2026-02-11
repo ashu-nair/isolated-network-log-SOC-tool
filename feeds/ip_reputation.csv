@@ -1,0 +1,5 @@
+ip,tag,risk,notes
+192.168.1.105,scanner,high,Repeated SSH brute force observed
+192.168.1.77,noise,low,Internal noisy host
+192.168.1.200,insider,medium,Security controls disabled
+10.0.0.5,botnet,critical,Known malware test IP

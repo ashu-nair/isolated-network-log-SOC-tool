@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+venv/
+.venv/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Generated runtime files (do not push)
+storage/portsoc.db
+storage/raw_logs.log
+storage/raw_logs.hashchain
+storage/offset.txt
+storage/local_offsets/
+
+# Reports generated
+reports/*.csv
+
+# VS Code
+.vscode/

@@ -1,46 +1,32 @@
 import socket
-import datetime
 import os
+from config.settings import RAW_LOG_FILE
 
 SYSLOG_IP = "0.0.0.0"
-SYSLOG_PORT = 5514   # Windows-safe syslog port
-LOG_FILE = "storage/raw_logs.log"
+SYSLOG_PORT = 5514
+LOG_FILE = RAW_LOG_FILE
 
 os.makedirs("storage", exist_ok=True)
-
-def classify_log(message):
-    msg = message.lower()
-    if "failed password" in msg:
-        return "AUTH_FAIL"
-    elif "accepted password" in msg:
-        return "AUTH_SUCCESS"
-    elif "ssh" in msg:
-        return "SSH"
-    elif "firewall" in msg:
-        return "FIREWALL"
-    else:
-        return "GENERAL"
 
 def start_syslog_server():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((SYSLOG_IP, SYSLOG_PORT))
 
     print(f"[+] PORT-SOC Syslog Server listening on UDP {SYSLOG_PORT}")
+    print(f"[+] Writing raw logs to: {LOG_FILE}")
 
     while True:
-        data, addr = sock.recvfrom(4096)
+        data, addr = sock.recvfrom(8192)
+
         message = data.decode(errors="ignore").strip()
+        if not message:
+            continue
 
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        source_ip = addr[0]
-        log_type = classify_log(message)
+        # Store raw message exactly (do NOT reformat)
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(message + "\n")
 
-        log_entry = f"{timestamp} | {source_ip} | {log_type} | {message}\n"
-
-        with open(LOG_FILE, "a") as f:
-            f.write(log_entry)
-
-        print(log_entry.strip())
+        print(f"[SYSLOG] {addr[0]} -> {message}")
 
 if __name__ == "__main__":
     start_syslog_server()

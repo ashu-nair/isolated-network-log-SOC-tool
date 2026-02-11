@@ -5,7 +5,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
 <h2>PORT-SOC Alerts Dashboard</h2>
+
+<p>
+    <a href="/incidents">View Incidents</a>
+</p>
 
 <table>
     <tr>
@@ -16,7 +21,10 @@
         <th>MITRE</th>
         <th>Count</th>
         <th>Window</th>
+        <th>IP Tag</th>
+        <th>IP Risk</th>
     </tr>
+
     {% for a in alerts %}
     <tr>
         <td>{{ a[0] }}</td>
@@ -26,6 +34,8 @@
         <td>{{ a[4] }}</td>
         <td>{{ a[5] }}</td>
         <td>{{ a[6] }}</td>
+        <td>{{ a[7] }}</td>
+        <td>{{ a[8] }}</td>
     </tr>
     {% endfor %}
 </table>

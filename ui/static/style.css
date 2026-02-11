@@ -26,3 +26,7 @@ th {
 .medium {
     color: #f59e0b;
 }
+td.critical { background: #ffcccc; font-weight: bold; }
+td.high { background: #ffe0b3; font-weight: bold; }
+td.medium { background: #fff3b3; }
+td.low { background: #d9ffd9; }
