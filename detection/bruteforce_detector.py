@@ -49,6 +49,18 @@ for ip, count in results:
     ip_tag = rep["tag"] if rep else "unknown"
     ip_risk = rep["risk"] if rep else "unknown"
     cursor.execute("""
+    SELECT MAX(timestamp)
+    FROM logs
+    WHERE source_ip = ?
+    AND timestamp >= ?
+    AND event_type IN ('AUTH_FAIL', 'AUTH_FAIL_INVALID_USER')
+    """, (ip, window_start.strftime("%Y-%m-%d %H:%M:%S")))
+
+    ip_latest_ts = cursor.fetchone()[0]
+    detected_at = ip_latest_ts if ip_latest_ts else latest_dt.strftime("%Y-%m-%d %H:%M:%S")
+
+
+    cursor.execute("""
     SELECT COUNT(*) FROM alerts
     WHERE alert_type = 'Brute Force Attack'
     AND source_ip = ?
@@ -74,7 +86,7 @@ for ip, count in results:
             f"{WINDOW_MINUTES} minutes",
             "High",
             "T1110",
-            latest_dt.strftime("%Y-%m-%d %H:%M:%S"),
+            detected_at,
             ip_tag,
             ip_risk
         ))

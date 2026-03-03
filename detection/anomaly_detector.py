@@ -9,6 +9,7 @@ THRESHOLD = 10  # default
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
+# Use latest structured log timestamp (not system time)
 cursor.execute("SELECT MAX(timestamp) FROM logs")
 latest_ts = cursor.fetchone()[0]
 
@@ -20,11 +21,12 @@ if not latest_ts:
 latest_dt = datetime.strptime(latest_ts, "%Y-%m-%d %H:%M:%S")
 window_start = latest_dt - timedelta(minutes=WINDOW_MINUTES)
 
-# Fetch all IP event counts
+# Count only meaningful events (exclude OTHER noise)
 cursor.execute("""
 SELECT source_ip, COUNT(*)
 FROM logs
 WHERE timestamp >= ?
+AND event_type != 'OTHER'
 GROUP BY source_ip
 """, (
     window_start.strftime("%Y-%m-%d %H:%M:%S"),
@@ -40,10 +42,23 @@ for ip, count in results:
     # Dynamic threshold override
     dynamic_threshold = THRESHOLD
     if ip_risk in ("high", "critical"):
-        dynamic_threshold = 5  # trigger faster for known bad IPs
+        dynamic_threshold = 5
 
     if count < dynamic_threshold:
         continue
+
+    # Real timestamp = last meaningful event in that window
+    cursor.execute("""
+    SELECT MAX(timestamp)
+    FROM logs
+    WHERE source_ip = ?
+    AND timestamp >= ?
+    AND event_type != 'OTHER'
+    """, (ip, window_start.strftime("%Y-%m-%d %H:%M:%S")))
+
+    detected_at = cursor.fetchone()[0]
+    if not detected_at:
+        detected_at = latest_dt.strftime("%Y-%m-%d %H:%M:%S")
 
     # Dedup
     cursor.execute("""
@@ -62,7 +77,8 @@ for ip, count in results:
     cursor.execute("""
     INSERT INTO alerts (
         alert_type, source_ip, event_count,
-        time_window, severity, mitre_id, detected_at, ip_tag, ip_risk
+        time_window, severity, mitre_id, detected_at,
+        ip_tag, ip_risk
     )
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
@@ -72,7 +88,7 @@ for ip, count in results:
         f"{WINDOW_MINUTES} minutes",
         "Medium",
         "T1499",
-        latest_dt.strftime("%Y-%m-%d %H:%M:%S"),
+        detected_at,
         ip_tag,
         ip_risk
     ))

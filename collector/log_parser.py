@@ -29,13 +29,24 @@ def extract_ip(text):
 
 
 def parse_syslog_timestamp(raw_log):
-    # Supports: "Feb 04 22:10:17 ..."
+    """
+    Supports:
+    Feb 17 13:45:52 ...
+    <85>Feb 17 13:45:52 ...
+    """
+
+    raw_log = raw_log.strip()
+
+    # Remove priority prefix like <85>
+    raw_log = re.sub(r"^<\d+>", "", raw_log)
+
     m = re.match(r"^([A-Z][a-z]{2})\s+(\d{1,2})\s+(\d{2}:\d{2}:\d{2})\s+", raw_log)
     if not m:
         return None
 
     month, day, time_part = m.groups()
     year = datetime.now().year
+
     try:
         dt = datetime.strptime(f"{year} {month} {day} {time_part}", "%Y %b %d %H:%M:%S")
         return dt.strftime("%Y-%m-%d %H:%M:%S")

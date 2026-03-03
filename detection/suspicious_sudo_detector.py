@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from config.settings import DB_PATH
 from feeds.reputation_loader import get_ip_reputation
 
-
 WINDOW_MINUTES = 60
 
 SUSPICIOUS_KEYWORDS = [
@@ -22,13 +21,12 @@ SUSPICIOUS_KEYWORDS = [
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
-
-# Use latest log timestamp instead of system time
-cursor.execute("SELECT MAX(timestamp) FROM logs")
+# Use latest PRIV_ACCESS timestamp (not system time)
+cursor.execute("SELECT MAX(timestamp) FROM logs WHERE event_type='PRIV_ACCESS'")
 latest_ts = cursor.fetchone()[0]
 
 if not latest_ts:
-    print("[INFO] No logs found for brute force detection.")
+    print("[INFO] No logs found for suspicious sudo detection.")
     conn.close()
     exit()
 
@@ -40,48 +38,54 @@ SELECT source_ip, username, raw_log, timestamp
 FROM logs
 WHERE event_type = 'PRIV_ACCESS'
 AND timestamp >= ?
+ORDER BY timestamp ASC
 """, (window_start.strftime("%Y-%m-%d %H:%M:%S"),))
 
 rows = cursor.fetchall()
 
 for ip, user, raw, ts in rows:
     raw_lower = raw.lower()
+
+    if not any(k.lower() in raw_lower for k in SUSPICIOUS_KEYWORDS):
+        continue
+
     rep = get_ip_reputation(ip)
     ip_tag = rep["tag"] if rep else "unknown"
     ip_risk = rep["risk"] if rep else "unknown"
 
-    if any(k.lower() in raw_lower for k in SUSPICIOUS_KEYWORDS):
-        # Dedup: avoid spamming same alert repeatedly
-        cursor.execute("""
-        SELECT COUNT(*) FROM alerts
-        WHERE alert_type = 'Suspicious Privileged Command Execution'
-        AND source_ip = ?
-        AND detected_at >= ?
-        """, (ip, window_start.strftime("%Y-%m-%d %H:%M:%S")))
+    detected_at = ts  # ✅ use the sudo event timestamp itself
 
-        if cursor.fetchone()[0] > 0:
-            continue
+    # Dedup (don’t spam same alert again and again)
+    cursor.execute("""
+    SELECT COUNT(*) FROM alerts
+    WHERE alert_type = 'Suspicious Privileged Command Execution'
+    AND source_ip = ?
+    AND detected_at = ?
+    """, (ip, detected_at))
 
-        cursor.execute("""
-        INSERT INTO alerts (
-            alert_type, source_ip, event_count,
-            time_window, severity, mitre_id, detected_at , ip_tag, ip_risk
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            "Suspicious Privileged Command Execution",
-            ip,
-            1,
-            f"{WINDOW_MINUTES} minutes",
-            "High",
-            "T1059",
-            latest_dt.strftime("%Y-%m-%d %H:%M:%S"),
-            ip_tag,
-            ip_risk
-        ))
+    if cursor.fetchone()[0] > 0:
+        continue
 
-        print(f"[ALERT] Suspicious sudo command by {user} from {ip}")
-        break
+    cursor.execute("""
+    INSERT INTO alerts (
+        alert_type, source_ip, event_count,
+        time_window, severity, mitre_id,
+        detected_at, ip_tag, ip_risk
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        "Suspicious Privileged Command Execution",
+        ip,
+        1,
+        f"{WINDOW_MINUTES} minutes",
+        "High",
+        "T1059",
+        detected_at,
+        ip_tag,
+        ip_risk
+    ))
+
+    print(f"[ALERT] Suspicious sudo command by {user} from {ip}")
 
 conn.commit()
 conn.close()
